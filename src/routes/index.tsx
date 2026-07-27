@@ -234,7 +234,7 @@ function Index() {
 
         {/* Content */}
         <div className="relative z-10 mx-auto max-w-4xl px-4 text-center text-white sm:px-6">
-          <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.3em] text-accent sm:mb-4 sm:text-xs">Lonavala · Maharashtra</p>
+          <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.3em] text-accent sm:mb-4 sm:text-xs">Shahapur · Maharashtra</p>
           <h1 className="font-display text-3xl font-semibold leading-[1.1] sm:text-5xl md:text-7xl">
             Private Pool Villas <br className="hidden sm:block" /> in the Hills
           </h1>
@@ -400,7 +400,7 @@ function Index() {
           Only a scenic drive from the city — a real mountain reset without the long-haul flight.
         </p>
         <div className="mt-6 rounded-2xl border border-border bg-card p-4 sm:mt-8 sm:p-6">
-          <p className="flex items-start gap-2 text-sm font-medium"><MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" /> MountainBreeze Villas, Hill Ridge Road, Lonavala, Maharashtra — 410401, India</p>
+          <p className="flex items-start gap-2 text-sm font-medium"><MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" /> Mountain Breeze Farm House, near Z.P School, Dehene, Shahapur, Maharashtra 421601</p>
         </div>
         <a href="#" className="mt-5 inline-flex rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground sm:mt-6">Open in Google Maps</a>
       </section>
@@ -418,7 +418,7 @@ function Index() {
                 <li className="flex items-center gap-3"><Phone className="h-4 w-4 text-primary" /> <span className="font-medium">+91 95949 94422</span></li>
                 <li className="flex items-center gap-3"><Mail className="h-4 w-4 text-primary" /> <span className="font-medium">hello@mountainbreeze.farm</span></li>
                 <li className="flex items-center gap-3"><Camera className="h-4 w-4 text-primary" /> <span className="font-medium">@mountainbreeze.farm</span></li>
-                <li className="flex items-center gap-3"><MapPin className="h-4 w-4 text-primary" /> <span className="font-medium">Mumbai, Maharashtra</span></li>
+                <li className="flex items-center gap-3"><MapPin className="h-4 w-4 text-primary" /> <span className="font-medium">Dehene, Shahapur, Maharashtra</span></li>
               </ul>
             </div>
             <div className="rounded-2xl bg-[oklch(0.22_0.03_150)] p-6 text-white sm:p-8">
