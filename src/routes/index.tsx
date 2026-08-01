@@ -181,6 +181,7 @@ function VillaSlider() {
 function Index() {
   const [slide, setSlide] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const next = useCallback(() => setSlide((s) => (s + 1) % heroImages.length), []);
   const prev = useCallback(() => setSlide((s) => (s - 1 + heroImages.length) % heroImages.length), []);
 
@@ -189,22 +190,28 @@ function Index() {
     return () => clearInterval(id);
   }, [next]);
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 80);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       {/* NAV */}
-      <header className="absolute top-0 left-0 right-0 z-30">
+      <header className={`fixed top-0 left-0 right-0 z-30 transition-all duration-300 ${scrolled ? "bg-background/95 backdrop-blur-lg border-b border-border shadow-lg" : ""}`}>
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 sm:py-5">
           <a href="#" aria-label="Mountain Breeze Farm home" className="flex items-center">
-            <img src={logo} alt="Mountain Breeze Farm" width={180} height={44} fetchPriority="high" className="h-8 w-auto brightness-0 invert drop-shadow-md sm:h-11" />
+            <img src={logo} alt="Mountain Breeze Farm" width={180} height={44} fetchPriority="high" className={`h-8 w-auto drop-shadow-md sm:h-11 transition-all ${scrolled ? "" : "brightness-0 invert"}`} />
           </a>
-          <ul className="hidden items-center gap-6 text-sm font-medium text-white/90 lg:flex">
-            <li><a href="#about" className="hover:text-white transition">About</a></li>
-            <li><a href="#gallery" className="hover:text-white transition">Gallery</a></li>
-            <li><a href="#things-to-do" className="hover:text-white transition">Things To Do</a></li>
-            <li><a href="#events" className="hover:text-white transition">Events</a></li>
-            <li><a href="#location" className="hover:text-white transition">Location</a></li>
-            <li><a href="#reviews" className="hover:text-white transition">Reviews</a></li>
-            <li><a href="#contact" className="hover:text-white transition">Contact</a></li>
+          <ul className={`hidden items-center gap-6 text-sm font-medium lg:flex transition-colors ${scrolled ? "text-foreground/90" : "text-white/90"}`}>
+            <li><a href="#about" className={`transition ${scrolled ? "hover:text-primary" : "hover:text-white"}`}>About</a></li>
+            <li><a href="#gallery" className={`transition ${scrolled ? "hover:text-primary" : "hover:text-white"}`}>Gallery</a></li>
+            <li><a href="#things-to-do" className={`transition ${scrolled ? "hover:text-primary" : "hover:text-white"}`}>Things To Do</a></li>
+            <li><a href="#events" className={`transition ${scrolled ? "hover:text-primary" : "hover:text-white"}`}>Events</a></li>
+            <li><a href="#location" className={`transition ${scrolled ? "hover:text-primary" : "hover:text-white"}`}>Location</a></li>
+            <li><a href="#reviews" className={`transition ${scrolled ? "hover:text-primary" : "hover:text-white"}`}>Reviews</a></li>
+            <li><a href="#contact" className={`transition ${scrolled ? "hover:text-primary" : "hover:text-white"}`}>Contact</a></li>
           </ul>
           <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="hidden rounded-full bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/30 transition hover:brightness-110 sm:inline-flex items-center gap-2">
             <WhatsAppIcon className="h-4 w-4" /> WhatsApp Us
@@ -212,7 +219,7 @@ function Index() {
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
-            className="grid h-10 w-10 place-items-center rounded-full bg-black/30 text-white backdrop-blur lg:hidden"
+            className={`grid h-10 w-10 place-items-center rounded-full backdrop-blur lg:hidden transition-colors ${scrolled ? "bg-secondary text-foreground" : "bg-black/30 text-white"}`}
           >
             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
