@@ -1,6 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, useCallback } from "react";
-import { ChevronLeft, ChevronRight, Waves, TreePine, CookingPot, Wifi, Flame, Car, Phone, Mail, MapPin, Camera, Menu, X } from "lucide-react";
+import {
+  ChevronLeft, ChevronRight, Waves, TreePine, CookingPot, Wifi,
+  Flame, Car, Phone, Mail, MapPin, Camera, Menu, X, Star,
+  Utensils, Users, Home, Mountain, Navigation, Calendar, PartyPopper
+} from "lucide-react";
 import hero1 from "@/assets/hero-1.jpg";
 import hero2 from "@/assets/hero-2.jpg";
 import hero3 from "@/assets/hero-3.jpg";
@@ -29,8 +33,9 @@ function WhatsAppIcon({ className = "h-5 w-5" }: { className?: string }) {
 const heroImages = [hero1, hero2, hero3, hero4, hero5, hero6, hero7];
 
 const WHATSAPP_NUMBER = "919594994422";
-const WHATSAPP_MESSAGE = encodeURIComponent("Hi MountainBreeze! I'm interested in booking a private pool villa. Could you share availability and pricing?");
+const WHATSAPP_MESSAGE = encodeURIComponent("Hi Mountain Breeze Farm! I'm interested in booking your 3BHK farmhouse. Could you share availability and pricing?");
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`;
+const CALL_NUMBER = "tel:+919594994422";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -38,6 +43,8 @@ export const Route = createFileRoute("/")({
     meta: [
       { property: "og:image", content: hero1 },
       { name: "twitter:image", content: hero1 },
+      { name: "description", content: "Mountain Breeze Farm — 3BHK Private Farmhouse near Mumbai & Thane with Swimming Pool, Mountain View, Bonfire & BBQ. Best farm stay near Shahapur, Maharashtra." },
+      { name: "keywords", content: "farm stay near Mumbai, farm stay with swimming pool, 3BHK farmhouse near Mumbai, farmhouse near Thane, farmhouse near Shahapur, private farmhouse near Mumbai, weekend getaway near Mumbai, mountain view farmhouse, luxury farm stay Maharashtra" },
     ],
   }),
 });
@@ -75,27 +82,61 @@ const gallery = [
 ];
 
 const features = [
-  { icon: Waves, t: "Private Pool", d: "Every villa has its own heated pool — no sharing, ever." },
-  { icon: TreePine, t: "Forest Setting", d: "Nestled inside pine forest with mountain-air freshness." },
-  { icon: CookingPot, t: "Full Kitchen", d: "Fully equipped kitchens with everything you need to cook in." },
-  { icon: Wifi, t: "Fast Wi-Fi", d: "Reliable high-speed internet across every corner of the villa." },
-  { icon: Flame, t: "Bonfire", d: "Private bonfire pit for chilly mountain evenings under the stars." },
-  { icon: Car, t: "Free Parking", d: "Ample private parking, right at the doorstep of your villa." },
+  { icon: Waves,       t: "Private Swimming Pool",   d: "Take a dip in your exclusive pool surrounded by nature — no crowds, no sharing." },
+  { icon: Mountain,    t: "Mountain View",           d: "Wake up to breathtaking Sahyadri mountain views every single morning." },
+  { icon: Home,        t: "3BHK Private Farmhouse",  d: "Entire property exclusively yours — 3 bedrooms, living room, full kitchen." },
+  { icon: Flame,       t: "Bonfire & BBQ",           d: "Cosy bonfire nights and BBQ evenings under a sky full of stars." },
+  { icon: TreePine,    t: "Nature Experience",       d: "Surrounded by lush greenery, fresh mountain air, and peaceful trails." },
+  { icon: Users,       t: "Family & Group Friendly", d: "Perfect for families, friend groups, corporate outings and celebrations." },
+  { icon: CookingPot,  t: "Full Kitchen",            d: "Fully equipped kitchen — cook your own meals or arrange a chef." },
+  { icon: Wifi,        t: "Fast Wi-Fi",              d: "High-speed internet so you stay connected even in nature." },
+  { icon: Car,         t: "Free Parking",            d: "Ample parking space right at the farmhouse entrance." },
+];
+
+const thingsToDo = [
+  { icon: Waves,       t: "Swimming Pool",    d: "Splash around in the private pool with scenic mountain backdrop." },
+  { icon: Flame,       t: "Bonfire Nights",   d: "Gather around the fire for stories, music, and stargazing." },
+  { icon: Utensils,    t: "BBQ Nights",       d: "Grill your favourites in the open-air BBQ area." },
+  { icon: Mountain,    t: "Nature Walks",     d: "Explore the forested trails and breathe in the pure mountain air." },
+  { icon: Camera,      t: "Photography",      d: "Golden hour, drone shots, misty mountains — a photographer's dream." },
+  { icon: Star,        t: "Stargazing",       d: "Far from city lights — the night sky here is absolutely stunning." },
+  { icon: TreePine,    t: "Sunrise View",     d: "Wake up early and watch the sun rise over the Sahyadri peaks." },
+  { icon: Users,       t: "Family & Games",   d: "Indoor and outdoor games for all age groups." },
+];
+
+const events = [
+  { icon: PartyPopper, t: "Birthday Parties",          d: "Celebrate with a private farmhouse, pool, and bonfire — unforgettable." },
+  { icon: Users,       t: "Family Gatherings",         d: "Book the entire property for your family reunion." },
+  { icon: Star,        t: "Friends Getaways",          d: "The perfect squad escape from the city grind." },
+  { icon: Home,        t: "Corporate Outings",         d: "Team building, off-sites, and company retreats in nature." },
+  { icon: Calendar,    t: "Anniversary Celebrations",  d: "A romantic farmhouse stay with mountain views." },
+  { icon: Camera,      t: "Pre-Wedding Shoots",        d: "Stunning natural backdrops for your pre-wedding photography." },
+  { icon: PartyPopper, t: "Bachelor / Bachelorette",   d: "Epic send-off party with pool, bonfire, BBQ, and games." },
+];
+
+const distances = [
+  { from: "Mumbai",                    dist: "~85 km",  time: "~2 hrs",     via: "Samruddhi Mahamarg / NH 160" },
+  { from: "Thane",                     dist: "~65 km",  time: "~1.5 hrs",   via: "NH 160 via Shahapur" },
+  { from: "Nashik",                    dist: "~110 km", time: "~2.5 hrs",   via: "NH 160" },
+  { from: "Asangaon Railway Station",  dist: "~18 km",  time: "~30 mins",   via: "State Highway" },
+  { from: "Samruddhi Mahamarg",        dist: "~12 km",  time: "~20 mins",   via: "Shahapur Exit" },
 ];
 
 const testimonials = [
-  { q: "The most peaceful weekend we've had in years. Woke up to mist rolling through the pines.", n: "— Aarav & Priya, Mumbai" },
-  { q: "Impeccable service. The villa was spotless and the pool was the perfect temperature.", n: "— The Kapoor Family" },
-  { q: "Everything was exactly as promised. We're already planning our next stay at MOUNTAINBREEZ.", n: "— Neha S." },
+  { q: "Woke up to misty mountains and birds chirping. The pool was cold and refreshing. Perfect escape from Mumbai chaos.", n: "— Rahul & Family, Mumbai", r: 5 },
+  { q: "Bonfire, BBQ, pool and stunning mountain views — Mountain Breeze Farm has everything. Already booked again!", n: "— The Sharma Group, Thane", r: 5 },
+  { q: "Best farmhouse stay near Mumbai. Entire property to ourselves, super clean, and the caretaker was extremely helpful.", n: "— Priya S., Mumbai", r: 5 },
 ];
 
 const faqs = [
-  { q: "Does every villa have a private pool?", a: "Yes — every MOUNTAINBREEZ villa comes with its own private heated pool, not shared with any other guests." },
-  { q: "How far is MOUNTAINBREEZ from the city?", a: "We're about a 2.5-hour scenic drive from the nearest metro, tucked into the hills at 3,200 ft elevation." },
-  { q: "Can I bring my pet?", a: "Absolutely — we're pet-friendly. Just let us know at booking so we can prepare the villa." },
-  { q: "Do you host events like birthdays?", a: "Yes, we regularly host birthdays, anniversaries and small celebrations. Ask us about our celebration add-ons." },
-  { q: "Is early check-in available?", a: "Subject to availability. Reach out after booking and we'll do our best to accommodate." },
-  { q: "What's your cancellation policy?", a: "Full refund up to 14 days before check-in. Partial refund up to 7 days. See booking terms for details." },
+  { q: "What is included in the booking?", a: "You get the entire 3BHK farmhouse exclusively — all 3 bedrooms, living room, full kitchen, private swimming pool, garden, bonfire area, and BBQ. No sharing with other guests." },
+  { q: "How far is Mountain Breeze Farm from Mumbai?", a: "About 85 km (~2 hours) from Mumbai via the Samruddhi Mahamarg / NH 160. It's a very comfortable scenic drive." },
+  { q: "Is the entire property booked exclusively?", a: "Yes — when you book, the entire farmhouse and all amenities are exclusively yours. No other guests on the property." },
+  { q: "Can we do BBQ and bonfire?", a: "Absolutely. We have a dedicated BBQ area and bonfire pit. Just let us know in advance so we can arrange everything." },
+  { q: "Do you host events like birthdays and corporate outings?", a: "Yes — we regularly host birthday parties, family gatherings, corporate team outings, pre-wedding shoots, and more. Ask us about event packages." },
+  { q: "Is early check-in or late check-out available?", a: "Subject to availability. Please reach out after booking and we'll do our best to accommodate your request." },
+  { q: "What is the cancellation policy?", a: "Full refund up to 7 days before check-in. 50% refund up to 3 days. No refund within 3 days. See full booking terms for details." },
+  { q: "How do we reach from Asangaon Railway Station?", a: "Mountain Breeze Farm is about 18 km (~30 mins) from Asangaon Railway Station. We can help arrange a local cab pickup." },
 ];
 
 const villaImages = [g7, g1, g4, g2, g3];
@@ -153,22 +194,16 @@ function Index() {
       {/* NAV */}
       <header className="absolute top-0 left-0 right-0 z-30">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 sm:py-5">
-          <a href="#" aria-label="MountainBreeze home" className="flex items-center">
-            <img
-              src={logo}
-              alt="MountainBreeze"
-              width={180}
-              height={44}
-              fetchPriority="high"
-              className="h-8 w-auto drop-shadow-md sm:h-11"
-            />
+          <a href="#" aria-label="Mountain Breeze Farm home" className="flex items-center">
+            <img src={logo} alt="Mountain Breeze Farm" width={180} height={44} fetchPriority="high" className="h-8 w-auto brightness-0 invert drop-shadow-md sm:h-11" />
           </a>
           <ul className="hidden items-center gap-6 text-sm font-medium text-white/90 lg:flex">
             <li><a href="#about" className="hover:text-white transition">About</a></li>
             <li><a href="#gallery" className="hover:text-white transition">Gallery</a></li>
-            <li><a href="#villas" className="hover:text-white transition">Villas</a></li>
+            <li><a href="#things-to-do" className="hover:text-white transition">Things To Do</a></li>
+            <li><a href="#events" className="hover:text-white transition">Events</a></li>
             <li><a href="#location" className="hover:text-white transition">Location</a></li>
-            <li><a href="#faq" className="hover:text-white transition">FAQ</a></li>
+            <li><a href="#reviews" className="hover:text-white transition">Reviews</a></li>
             <li><a href="#contact" className="hover:text-white transition">Contact</a></li>
           </ul>
           <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="hidden rounded-full bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/30 transition hover:brightness-110 sm:inline-flex items-center gap-2">
@@ -189,7 +224,7 @@ function Index() {
           <div className="absolute inset-0 bg-black/95 backdrop-blur-md" />
           <div className="relative flex h-full flex-col">
             <div className="flex items-center justify-between px-4 py-4">
-              <img src={logo} alt="MountainBreeze" className="h-8 w-auto" />
+              <img src={logo} alt="Mountain Breeze Farm" className="h-8 w-auto brightness-0 invert" />
               <button
                 onClick={() => setMobileMenuOpen(false)}
                 aria-label="Close menu"
@@ -201,9 +236,10 @@ function Index() {
             <ul className="flex flex-1 flex-col items-center justify-center gap-6 text-lg font-medium text-white/90">
               <li><a href="#about" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition">About</a></li>
               <li><a href="#gallery" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition">Gallery</a></li>
-              <li><a href="#villas" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition">Villas</a></li>
+              <li><a href="#things-to-do" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition">Things To Do</a></li>
+              <li><a href="#events" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition">Events</a></li>
               <li><a href="#location" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition">Location</a></li>
-              <li><a href="#faq" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition">FAQ</a></li>
+              <li><a href="#reviews" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition">Reviews</a></li>
               <li><a href="#contact" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition">Contact</a></li>
               <li className="mt-4">
                 <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)} className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground">
@@ -235,18 +271,24 @@ function Index() {
         {/* Content */}
         <div className="relative z-10 mx-auto max-w-4xl px-4 text-center text-white sm:px-6">
           <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.3em] text-accent sm:mb-4 sm:text-xs">Shahapur · Maharashtra</p>
-          <h1 className="font-display text-3xl font-semibold leading-[1.1] sm:text-5xl md:text-7xl">
-            Private Pool Villas <br className="hidden sm:block" /> in the Hills
+          <h1 className="font-display text-2xl font-semibold leading-[1.1] sm:text-4xl md:text-6xl">
+            3BHK Farmhouse Near Mumbai &amp; Thane<br className="hidden sm:block" /> | Mountain Breeze Farm
           </h1>
-          <p className="mx-auto mt-4 max-w-xl text-sm text-white/85 sm:mt-6 sm:text-lg">
-            Curated villas. Endless forest views. One quiet valley all to yourselves.
+          <p className="mx-auto mt-3 text-lg font-medium tracking-wide text-accent sm:mt-4 sm:text-2xl">
+            Wake Up To The Peak
           </p>
-          <div className="mt-6 flex flex-row items-center justify-center gap-3 sm:mt-10">
-            <a href="#villas" className="rounded-full bg-primary px-4 py-2.5 text-xs font-semibold text-primary-foreground shadow-lg shadow-primary/40 transition hover:brightness-110 sm:px-8 sm:py-3 sm:text-sm">
-              Book a Villa
+          <p className="mx-auto mt-3 max-w-xl text-sm text-white/80 sm:mt-4 sm:text-base">
+            Private 3BHK farmhouse with swimming pool, mountain views, bonfire &amp; BBQ — near Mumbai &amp; Thane.
+          </p>
+          <div className="mt-6 flex flex-row flex-wrap items-center justify-center gap-2 sm:mt-8 sm:gap-3">
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2.5 text-xs font-semibold text-primary-foreground shadow-lg shadow-primary/40 transition hover:brightness-110 sm:px-6 sm:py-3 sm:text-sm">
+              <WhatsAppIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4" /> Book Now
             </a>
-            <a href="#contact" className="rounded-full border border-white/40 bg-white/10 px-4 py-2.5 text-xs font-semibold text-white backdrop-blur transition hover:bg-white/20 sm:px-8 sm:py-3 sm:text-sm">
-              Check Availability
+            <a href={CALL_NUMBER} className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 px-4 py-2.5 text-xs font-semibold text-white backdrop-blur transition hover:bg-white/20 sm:px-6 sm:py-3 sm:text-sm">
+              <Phone className="h-3.5 w-3.5 sm:h-4 sm:w-4" /> Call Now
+            </a>
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-[#25D366]/20 px-4 py-2.5 text-xs font-semibold text-white backdrop-blur transition hover:bg-[#25D366]/40 sm:px-6 sm:py-3 sm:text-sm">
+              <WhatsAppIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4" /> WhatsApp
             </a>
           </div>
         </div>
@@ -283,25 +325,38 @@ function Index() {
       {/* ABOUT */}
       <section id="about" className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-24">
         <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-primary">About Us</p>
-        <h2 className="font-display text-3xl font-semibold sm:text-4xl md:text-5xl">Where Adventure, Purpose &amp; Elegance Intertwine</h2>
+        <h2 className="font-display text-3xl font-semibold sm:text-4xl md:text-5xl">Your Private Farmhouse Escape Near Mumbai</h2>
         <div className="mt-6 space-y-4 text-base leading-relaxed text-muted-foreground sm:mt-8 sm:space-y-5 sm:text-lg">
           <p>
-            MountainBreeze is a Mumbai-based villa and outdoor experience company created for those who seek adventure without giving up comfort. We combine premium stays, scenic locations, and thoughtfully curated activities to offer escapes that reconnect people with nature.
+            Mountain Breeze Farm is a 3BHK private farmhouse nestled in the Sahyadri foothills near Shahapur, Maharashtra — just 2 hours from Mumbai and Thane. We offer the entire property exclusively to you and your group.
           </p>
           <p>
-            Our goal is to create unforgettable experiences through guided treks, outdoor adventures, and relaxing villa stays designed for families, groups, and explorers alike. Every journey with MountainBreeze is planned with a focus on safety, hospitality, and meaningful moments in nature.
+            Wake up to stunning mountain views, take a dip in your private pool, light up the bonfire at night, and reconnect with nature away from the city rush. Whether it's a family trip, friends getaway, corporate outing, or a special celebration — Mountain Breeze Farm is your perfect escape.
           </p>
           <p>
-            Whether you're looking for a peaceful getaway or an exciting outdoor escape, MountainBreeze brings you the perfect balance of relaxation, exploration, and lasting memories.
+            Book the entire 3BHK farmhouse for your group — no strangers, no shared spaces. Just you, your people, and the mountains.
           </p>
+        </div>
+        <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-10 sm:grid-cols-4">
+          {[
+            { n: "3BHK",         l: "Private Farmhouse" },
+            { n: "Private",      l: "Swimming Pool" },
+            { n: "360°",         l: "Mountain View" },
+            { n: "Entire",       l: "Property Yours" },
+          ].map((s) => (
+            <div key={s.l} className="rounded-2xl border border-border bg-card p-4 text-center">
+              <p className="font-display text-2xl font-semibold text-primary sm:text-3xl">{s.n}</p>
+              <p className="mt-1 text-xs text-muted-foreground sm:text-sm">{s.l}</p>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* FEATURES */}
       <section className="bg-secondary/60 py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-primary">Why MountainBreeze</p>
-          <h2 className="font-display text-3xl font-semibold sm:text-4xl md:text-5xl">Everything You Need, Nothing You Don't</h2>
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-primary">Why Choose Mountain Breeze Farm</p>
+          <h2 className="font-display text-3xl font-semibold sm:text-4xl md:text-5xl">Everything You Need for the Perfect Getaway</h2>
           <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {features.map((f) => (
               <div key={f.t} className="rounded-2xl border border-border bg-card p-5 sm:p-7 transition hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5">
@@ -320,8 +375,8 @@ function Index() {
       <section id="gallery" className="py-16 sm:py-24 overflow-hidden">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-primary">Photo Gallery</p>
-          <h2 className="font-display text-3xl font-semibold sm:text-4xl md:text-5xl">A Glimpse Inside</h2>
-          <p className="mt-3 text-sm text-muted-foreground sm:text-base">Wander through the interiors, poolside, and forested surroundings.</p>
+          <h2 className="font-display text-3xl font-semibold sm:text-4xl md:text-5xl">A Glimpse of Mountain Breeze Farm</h2>
+          <p className="mt-3 text-sm text-muted-foreground sm:text-base">Exteriors, pool, bedrooms, garden, bonfire, BBQ and stunning mountain views.</p>
         </div>
         <div className="relative mt-8 sm:mt-10">
           <div className="flex w-max animate-marquee gap-2.5 hover:[animation-play-state:paused]">
@@ -342,67 +397,156 @@ function Index() {
         </div>
       </section>
 
-      {/* VILLAS */}
-      <section id="villas" className="bg-secondary/60 py-16 sm:py-24">
+      {/* FARMHOUSE */}
+      <section id="farmhouse" className="bg-secondary/60 py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-primary">Our Villa</p>
-          <h2 className="font-display text-3xl font-semibold sm:text-4xl md:text-5xl">Your Private Escape</h2>
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-primary">Our Property</p>
+          <h2 className="font-display text-3xl font-semibold sm:text-4xl md:text-5xl">Mountain Breeze Farm</h2>
           <p className="mt-3 max-w-2xl text-sm text-muted-foreground sm:text-base">
-            A premium villa stay combining comfort, scenic beauty, and curated outdoor experiences — designed for families, groups, and explorers.
+            3BHK private farmhouse with swimming pool, mountain views, bonfire, BBQ — entirely yours near Shahapur.
           </p>
           <div className="mt-8 grid gap-6 sm:mt-12 md:grid-cols-2 md:gap-8">
             <VillaSlider />
             <div className="flex flex-col justify-center">
-              <h3 className="font-display text-2xl font-semibold sm:text-3xl">MountainBreeze Villa</h3>
-              <p className="mt-2 text-[10px] uppercase tracking-widest text-muted-foreground sm:text-xs">Private Pool · Scenic Location · Curated Experiences</p>
+              <h3 className="font-display text-2xl font-semibold sm:text-3xl">3BHK Private Farmhouse</h3>
+              <p className="mt-2 text-[10px] uppercase tracking-widest text-muted-foreground sm:text-xs">Entire Property · Private Pool · Mountain View · Shahapur</p>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:mt-4">
-                Seek adventure without giving up comfort. Our villa combines a premium stay with scenic surroundings and thoughtfully curated activities that reconnect you with nature.
+                The entire farmhouse is exclusively yours — all 3 bedrooms, living room, full kitchen, and all outdoor amenities. Perfect for families, friends, and group bookings.
               </p>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground sm:mt-3">
-                From guided treks and outdoor adventures to relaxing poolside moments — every stay is planned with a focus on safety, hospitality, and meaningful moments.
+                Just 2 hours from Mumbai — wake up to mountain peaks, enjoy a morning swim, evening bonfire, and BBQ dinner under the stars.
               </p>
               <div className="mt-6 flex flex-wrap gap-2 text-xs text-muted-foreground">
-                <span className="inline-flex items-center gap-1.5 rounded-md bg-secondary px-3 py-1.5"><Waves className="h-3.5 w-3.5" /> Private Pool</span>
+                <span className="inline-flex items-center gap-1.5 rounded-md bg-secondary px-3 py-1.5"><Waves className="h-3.5 w-3.5" /> Swimming Pool</span>
                 <span className="inline-flex items-center gap-1.5 rounded-md bg-secondary px-3 py-1.5"><Flame className="h-3.5 w-3.5" /> Bonfire</span>
-                <span className="inline-flex items-center gap-1.5 rounded-md bg-secondary px-3 py-1.5"><TreePine className="h-3.5 w-3.5" /> Guided Treks</span>
-                <span className="inline-flex items-center gap-1.5 rounded-md bg-secondary px-3 py-1.5"><MapPin className="h-3.5 w-3.5" /> Scenic Location</span>
+                <span className="inline-flex items-center gap-1.5 rounded-md bg-secondary px-3 py-1.5"><Utensils className="h-3.5 w-3.5" /> BBQ Area</span>
+                <span className="inline-flex items-center gap-1.5 rounded-md bg-secondary px-3 py-1.5"><Mountain className="h-3.5 w-3.5" /> Mountain View</span>
+                <span className="inline-flex items-center gap-1.5 rounded-md bg-secondary px-3 py-1.5"><Home className="h-3.5 w-3.5" /> 3BHK</span>
+                <span className="inline-flex items-center gap-1.5 rounded-md bg-secondary px-3 py-1.5"><Users className="h-3.5 w-3.5" /> Entire Property</span>
               </div>
-              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="mt-6 flex w-full items-center justify-center gap-2 rounded-lg bg-primary py-3 text-sm font-semibold text-primary-foreground transition hover:brightness-110 sm:w-auto sm:px-8">
-                <WhatsAppIcon className="h-4 w-4" /> Enquire on WhatsApp
-              </a>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-primary py-3 text-sm font-semibold text-primary-foreground transition hover:brightness-110">
+                  <WhatsAppIcon className="h-4 w-4" /> Book on WhatsApp
+                </a>
+                <a href={CALL_NUMBER} className="flex flex-1 items-center justify-center gap-2 rounded-lg border border-primary py-3 text-sm font-semibold text-primary transition hover:bg-primary/10">
+                  <Phone className="h-4 w-4" /> Call to Book
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
-      <section className="bg-[oklch(0.22_0.03_150)] py-16 text-white sm:py-24">
+      {/* THINGS TO DO */}
+      <section id="things-to-do" className="py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-accent">Guest Stories</p>
-          <h2 className="font-display text-3xl font-semibold sm:text-4xl md:text-5xl">What Our Guests Say</h2>
-          <div className="mt-8 grid gap-4 sm:mt-12 sm:gap-6 md:grid-cols-3">
-            {testimonials.map((t, i) => (
-              <div key={i} className="rounded-2xl border border-white/10 bg-white/5 p-7 backdrop-blur">
-                <div className="text-accent">★★★★★</div>
-                <p className="mt-4 text-sm leading-relaxed text-white/85">"{t.q}"</p>
-                <p className="mt-4 text-xs font-medium uppercase tracking-wider text-white/60">{t.n}</p>
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-primary">Activities</p>
+          <h2 className="font-display text-3xl font-semibold sm:text-4xl md:text-5xl">Things To Do</h2>
+          <p className="mt-3 max-w-2xl text-sm text-muted-foreground sm:text-base">From poolside relaxation to bonfire nights — there's always something to enjoy at Mountain Breeze Farm.</p>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {thingsToDo.map((f) => (
+              <div key={f.t} className="rounded-2xl border border-border bg-card p-5 transition hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5">
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                  <f.icon className="h-5 w-5" />
+                </div>
+                <h3 className="font-semibold">{f.t}</h3>
+                <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{f.d}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* EVENTS */}
+      <section id="events" className="bg-secondary/60 py-16 sm:py-24">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-primary">Celebrate Here</p>
+          <h2 className="font-display text-3xl font-semibold sm:text-4xl md:text-5xl">Perfect for Every Occasion</h2>
+          <p className="mt-3 max-w-2xl text-sm text-muted-foreground sm:text-base">From birthdays to corporate outings — Mountain Breeze Farm is the perfect venue for your special event.</p>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {events.map((e) => (
+              <div key={e.t} className="rounded-2xl border border-border bg-card p-5 transition hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5">
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                  <e.icon className="h-5 w-5" />
+                </div>
+                <h3 className="font-semibold">{e.t}</h3>
+                <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{e.d}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8 text-center">
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-primary px-8 py-3 text-sm font-semibold text-primary-foreground shadow-lg transition hover:brightness-110">
+              <WhatsAppIcon className="h-4 w-4" /> Enquire About Events
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* REVIEWS */}
+      <section id="reviews" className="bg-[oklch(0.22_0.03_150)] py-16 text-white sm:py-24">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-accent">Google Reviews</p>
+          <div className="flex flex-wrap items-end gap-4">
+            <h2 className="font-display text-3xl font-semibold sm:text-4xl md:text-5xl">What Our Guests Say</h2>
+            <div className="flex items-center gap-2 pb-1">
+              <div className="flex text-yellow-400">{"★★★★★"}</div>
+              <span className="text-sm font-semibold text-white/90">5.0</span>
+              <span className="text-xs text-white/50">on Google</span>
+            </div>
+          </div>
+          <div className="mt-8 grid gap-4 sm:mt-12 sm:gap-6 md:grid-cols-3">
+            {testimonials.map((t, i) => (
+              <div key={i} className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur">
+                <div className="flex items-center gap-2">
+                  <div className="flex text-yellow-400 text-sm">{"★".repeat(t.r)}</div>
+                  <span className="text-xs text-white/50">Google Review</span>
+                </div>
+                <p className="mt-3 text-sm leading-relaxed text-white/85">"{t.q}"</p>
+                <p className="mt-3 text-xs font-medium uppercase tracking-wider text-white/60">{t.n}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8 text-center">
+            <a href="https://g.page/r/mountainbreezefarm/review" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/20">
+              <Star className="h-4 w-4 text-yellow-400" /> Leave a Google Review
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* LOCATION */}
-      <section id="location" className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-24">
+      <section id="location" className="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-24">
         <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-primary">Getting Here</p>
-        <h2 className="font-display text-3xl font-semibold sm:text-4xl md:text-5xl">Location</h2>
+        <h2 className="font-display text-3xl font-semibold sm:text-4xl md:text-5xl">Location & Directions</h2>
         <p className="mt-3 max-w-2xl text-sm text-muted-foreground sm:mt-4 sm:text-base">
-          Only a scenic drive from the city — a real mountain reset without the long-haul flight.
+          Conveniently located near Mumbai, Thane & Nashik — an easy scenic drive through the Sahyadris.
         </p>
         <div className="mt-6 rounded-2xl border border-border bg-card p-4 sm:mt-8 sm:p-6">
-          <p className="flex items-start gap-2 text-sm font-medium"><MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" /> Mountain Breeze Farm House, near Z.P School, Dehene, Shahapur, Maharashtra 421601</p>
+          <p className="flex items-start gap-2 text-sm font-medium">
+            <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+            Mountain Breeze Farm House, near Z.P School, Dehene, Shahapur, Maharashtra 421601
+          </p>
         </div>
-        <a href="#" className="mt-5 inline-flex rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground sm:mt-6">Open in Google Maps</a>
+        <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {distances.map((d) => (
+            <div key={d.from} className="rounded-xl border border-border bg-card p-4">
+              <div className="flex items-center gap-2">
+                <Navigation className="h-4 w-4 text-primary" />
+                <span className="font-semibold text-sm">{d.from}</span>
+              </div>
+              <p className="mt-2 text-2xl font-display font-semibold text-primary">{d.dist}</p>
+              <p className="text-xs text-muted-foreground">{d.time} · {d.via}</p>
+            </div>
+          ))}
+        </div>
+        <div className="mt-6 flex flex-wrap gap-3">
+          <a href="https://maps.google.com/?q=Mountain+Breeze+Farm+Dehene+Shahapur+Maharashtra" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground">
+            <MapPin className="h-4 w-4" /> Open in Google Maps
+          </a>
+          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-primary px-6 py-3 text-sm font-semibold text-primary transition hover:bg-primary/10">
+            <WhatsAppIcon className="h-4 w-4" /> Get Directions on WhatsApp
+          </a>
+        </div>
       </section>
 
       {/* CONTACT */}
@@ -412,22 +556,28 @@ function Index() {
           <h2 className="font-display text-3xl font-semibold sm:text-4xl md:text-5xl">Contact &amp; Booking</h2>
           <div className="mt-8 grid gap-6 sm:mt-10 sm:gap-8 md:grid-cols-2">
             <div className="rounded-2xl border border-border bg-card p-6 sm:p-8">
-              <h3 className="font-display text-xl font-semibold sm:text-2xl">Book Your Stay</h3>
-              <p className="mt-2 text-sm text-muted-foreground">Reach out for pricing, availability or a custom experience. We respond within a few hours.</p>
+              <h3 className="font-display text-xl font-semibold sm:text-2xl">Book Mountain Breeze Farm</h3>
+              <p className="mt-2 text-sm text-muted-foreground">Reach out for pricing, availability or a custom event. We respond within a few hours.</p>
               <ul className="mt-6 space-y-3 text-sm">
-                <li className="flex items-center gap-3"><Phone className="h-4 w-4 text-primary" /> <span className="font-medium">+91 95949 94422</span></li>
-                <li className="flex items-center gap-3"><Mail className="h-4 w-4 text-primary" /> <span className="font-medium">hello@mountainbreeze.farm</span></li>
-                <li className="flex items-center gap-3"><Camera className="h-4 w-4 text-primary" /> <span className="font-medium">@mountainbreeze.farm</span></li>
-                <li className="flex items-center gap-3"><MapPin className="h-4 w-4 text-primary" /> <span className="font-medium">Dehene, Shahapur, Maharashtra</span></li>
+                <li className="flex items-center gap-3"><Phone className="h-4 w-4 text-primary" /><a href={CALL_NUMBER} className="font-medium hover:text-primary">+91 95949 94422</a></li>
+                <li className="flex items-center gap-3"><WhatsAppIcon className="h-4 w-4 text-[#25D366]" /><a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="font-medium hover:text-primary">WhatsApp Us</a></li>
+                <li className="flex items-center gap-3"><Mail className="h-4 w-4 text-primary" /><span className="font-medium">hello@mountainbreeze.farm</span></li>
+                <li className="flex items-center gap-3"><Camera className="h-4 w-4 text-primary" /><span className="font-medium">@mountainbreeze.farm</span></li>
+                <li className="flex items-center gap-3"><MapPin className="h-4 w-4 text-primary" /><span className="font-medium">Dehene, Shahapur, Maharashtra 421601</span></li>
               </ul>
             </div>
             <div className="rounded-2xl bg-[oklch(0.22_0.03_150)] p-6 text-white sm:p-8">
-              <h3 className="font-display text-xl font-semibold sm:text-2xl">Book Fast Track</h3>
-              <p className="mt-2 text-sm text-white/75">Skip the wait — message our booking team directly on WhatsApp for instant confirmation.</p>
-              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="mt-6 flex items-center justify-center gap-2 rounded-lg bg-primary py-3 text-sm font-semibold text-primary-foreground transition hover:brightness-110">
-                <WhatsAppIcon className="h-4 w-4" /> WhatsApp for Best Rate
-              </a>
-              <div className="mt-4 flex gap-4 text-xs text-white/60">
+              <h3 className="font-display text-xl font-semibold sm:text-2xl">Quick Booking</h3>
+              <p className="mt-2 text-sm text-white/75">Message us directly on WhatsApp for instant availability check and best rates.</p>
+              <div className="mt-6 flex flex-col gap-3">
+                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 rounded-lg bg-[#25D366] py-3 text-sm font-semibold text-white transition hover:brightness-110">
+                  <WhatsAppIcon className="h-4 w-4" /> WhatsApp for Best Rate
+                </a>
+                <a href={CALL_NUMBER} className="flex items-center justify-center gap-2 rounded-lg bg-primary py-3 text-sm font-semibold text-primary-foreground transition hover:brightness-110">
+                  <Phone className="h-4 w-4" /> Call +91 95949 94422
+                </a>
+              </div>
+              <div className="mt-6 flex gap-4 text-xs text-white/60">
                 <span className="inline-flex items-center gap-1"><Camera className="h-3.5 w-3.5" /> Instagram</span>
                 <span className="inline-flex items-center gap-1">▶ YouTube</span>
               </div>
@@ -456,9 +606,9 @@ function Index() {
       {/* FOOTER */}
       <footer className="border-t border-border bg-card py-8 sm:py-10">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-4 text-xs text-muted-foreground sm:px-6 md:flex-row md:gap-4">
-          <img src={logo} alt="MountainBreeze" width={160} height={40} loading="lazy" className="h-7 w-auto opacity-80 sm:h-8" />
-          <p>© 2026 MountainBreeze. All rights reserved.</p>
-          <p>Made with ⛰ in the hills.</p>
+          <img src={logo} alt="Mountain Breeze Farm" width={160} height={40} loading="lazy" className="h-7 w-auto opacity-80 sm:h-8" />
+          <p>© 2026 Mountain Breeze Farm. All rights reserved.</p>
+          <p>3BHK Farmhouse near Mumbai · Shahapur, Maharashtra</p>
         </div>
       </footer>
 

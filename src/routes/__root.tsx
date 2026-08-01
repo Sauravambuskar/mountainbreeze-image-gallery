@@ -77,8 +77,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "MOUNTAINBREEZ — Private Pool Villas in the Hills" },
-      { name: "description", content: "MOUNTAINBREEZ offers luxury private pool villas nestled in the hills. Book your peaceful mountain retreat surrounded by forests and fresh air." },
+      { title: "3BHK Farmhouse Near Mumbai & Thane | Mountain Breeze Farm" },
+      { name: "description", content: "Mountain Breeze Farm — 3BHK Private Farmhouse near Mumbai & Thane with Swimming Pool, Mountain View, Bonfire & BBQ. Best farm stay near Shahapur, Maharashtra." },
       { name: "author", content: "MOUNTAINBREEZ" },
       { property: "og:title", content: "MOUNTAINBREEZ — Private Pool Villas in the Hills" },
       { property: "og:description", content: "Luxury private pool villas in the hills. Your peaceful mountain retreat awaits." },
