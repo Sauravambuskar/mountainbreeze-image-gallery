@@ -301,15 +301,11 @@ function Index() {
 
         {/* Content */}
         <div className="relative z-10 mx-auto max-w-4xl px-4 text-center text-white sm:px-6">
-          <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.3em] text-accent sm:mb-4 sm:text-xs">Shahapur · Maharashtra</p>
           <h1 className="font-display text-2xl font-semibold leading-[1.1] sm:text-4xl md:text-6xl">
             3BHK Farmhouse Near Mumbai &amp; Thane<br className="hidden sm:block" /> | Mountain Breeze Farm
           </h1>
-          <p className="mx-auto mt-3 text-lg font-medium tracking-wide text-accent sm:mt-4 sm:text-2xl">
-            Wake Up To The Peak
-          </p>
           <p className="mx-auto mt-3 max-w-xl text-sm text-white/80 sm:mt-4 sm:text-base">
-            Private 3BHK farmhouse with swimming pool, mountain views, bonfire &amp; BBQ — near Mumbai &amp; Thane.
+            Private 3BHK farmhouse with swimming pool, mountain views, bonfire and BBQ near Mumbai and Thane.
           </p>
           <div className="mt-6 flex flex-row items-center justify-center gap-3 sm:mt-8">
             <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/40 transition hover:brightness-110">
