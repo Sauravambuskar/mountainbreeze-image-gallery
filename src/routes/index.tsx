@@ -202,7 +202,7 @@ function Index() {
       <header className={`fixed top-0 left-0 right-0 z-30 transition-all duration-300 ${scrolled ? "bg-background/95 backdrop-blur-lg border-b border-border shadow-lg" : ""}`}>
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 sm:py-5">
           <a href="#" aria-label="Mountain Breeze Farm home" className="flex items-center">
-            <img src={logo} alt="Mountain Breeze Farm" width={180} height={44} fetchPriority="high" className={`h-8 w-auto drop-shadow-md sm:h-11 transition-all ${scrolled ? "" : "brightness-0 invert"}`} />
+            <img src={logo} alt="Mountain Breeze Farm" width={180} height={44} fetchPriority="high" className={`h-8 w-auto drop-shadow-md sm:h-11 transition-all ${scrolled ? "" : "brightness-0 invert filter"}`} />
           </a>
           <ul className={`hidden items-center gap-6 text-sm font-medium lg:flex transition-colors ${scrolled ? "text-foreground/90" : "text-white/90"}`}>
             <li><a href="#about" className={`transition ${scrolled ? "hover:text-primary" : "hover:text-white"}`}>About</a></li>
@@ -231,7 +231,7 @@ function Index() {
           <div className="absolute inset-0 bg-black/95 backdrop-blur-md" />
           <div className="relative flex h-full flex-col">
             <div className="flex items-center justify-between px-4 py-4">
-              <img src={logo} alt="Mountain Breeze Farm" className="h-8 w-auto brightness-0 invert" />
+              <img src={logo} alt="Mountain Breeze Farm" className="h-8 w-auto brightness-0 invert filter" />
               <button
                 onClick={() => setMobileMenuOpen(false)}
                 aria-label="Close menu"
