@@ -311,15 +311,12 @@ function Index() {
           <p className="mx-auto mt-3 max-w-xl text-sm text-white/80 sm:mt-4 sm:text-base">
             Private 3BHK farmhouse with swimming pool, mountain views, bonfire &amp; BBQ — near Mumbai &amp; Thane.
           </p>
-          <div className="mt-6 flex flex-row flex-wrap items-center justify-center gap-2 sm:mt-8 sm:gap-3">
-            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2.5 text-xs font-semibold text-primary-foreground shadow-lg shadow-primary/40 transition hover:brightness-110 sm:px-6 sm:py-3 sm:text-sm">
-              <WhatsAppIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4" /> Book Now
+          <div className="mt-6 flex flex-row items-center justify-center gap-3 sm:mt-8">
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/40 transition hover:brightness-110">
+              <WhatsAppIcon className="h-4 w-4" /> Book Now
             </a>
-            <a href={CALL_NUMBER} className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 px-4 py-2.5 text-xs font-semibold text-white backdrop-blur transition hover:bg-white/20 sm:px-6 sm:py-3 sm:text-sm">
-              <Phone className="h-3.5 w-3.5 sm:h-4 sm:w-4" /> Call Now
-            </a>
-            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-[#25D366]/20 px-4 py-2.5 text-xs font-semibold text-white backdrop-blur transition hover:bg-[#25D366]/40 sm:px-6 sm:py-3 sm:text-sm">
-              <WhatsAppIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4" /> WhatsApp
+            <a href={CALL_NUMBER} className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/20">
+              <Phone className="h-4 w-4" /> Call Now
             </a>
           </div>
         </div>
