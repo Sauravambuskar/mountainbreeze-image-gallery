@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import {
-  ChevronLeft, ChevronRight, Waves, TreePine, CookingPot, Wifi,
+  Waves, TreePine, CookingPot, Wifi,
   Flame, Car, Phone, Mail, MapPin, Camera, Menu, X, Star,
   Utensils, Users, Home, Mountain, Navigation, Calendar, PartyPopper
 } from "lucide-react";
@@ -179,16 +179,8 @@ function VillaSlider() {
 }
 
 function Index() {
-  const [slide, setSlide] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const next = useCallback(() => setSlide((s) => (s + 1) % heroImages.length), []);
-  const prev = useCallback(() => setSlide((s) => (s - 1 + heroImages.length) % heroImages.length), []);
-
-  useEffect(() => {
-    const id = setInterval(next, 5000);
-    return () => clearInterval(id);
-  }, [next]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -284,19 +276,25 @@ function Index() {
 
       {/* HERO */}
       <section className="relative flex min-h-[100svh] items-center justify-center overflow-hidden">
-        {/* Slides */}
+        {/* Video Background */}
         <div className="absolute inset-0">
-          {heroImages.map((src, i) => (
-            <div
-              key={i}
-              className="absolute inset-0 transition-opacity duration-[1200ms] ease-in-out"
-              style={{ opacity: slide === i ? 1 : 0 }}
-              aria-hidden={slide !== i}
-            >
-              <img src={src} alt={`MountainBreeze view ${i + 1}`} className="h-full w-full object-cover" loading={i === 0 ? "eager" : "lazy"} />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/70" />
-            </div>
-          ))}
+          <div className="absolute inset-0 w-full h-full">
+            <iframe 
+              src="https://player.vimeo.com/video/1216344740?background=1&autoplay=1&loop=1&byline=0&title=0&portrait=0&muted=1" 
+              className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2"
+              style={{ 
+                width: '100vw', 
+                height: '56.25vw',
+                minHeight: '100vh',
+                minWidth: '177.77vh',
+                pointerEvents: 'none'
+              }}
+              frameBorder="0" 
+              allow="autoplay; fullscreen; picture-in-picture" 
+              title="Mountain Breeze Farm Background Video"
+            />
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/70" />
         </div>
 
         {/* Content */}
@@ -315,34 +313,6 @@ function Index() {
               <Phone className="h-4 w-4" /> Call Now
             </a>
           </div>
-        </div>
-
-        {/* Arrows */}
-        <button
-          onClick={prev}
-          aria-label="Previous slide"
-          className="absolute left-2 top-1/2 z-20 -translate-y-1/2 rounded-full border border-white/30 bg-black/30 p-1.5 text-white backdrop-blur transition hover:bg-black/50 sm:left-6 sm:p-3"
-        >
-          <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5" />
-        </button>
-        <button
-          onClick={next}
-          aria-label="Next slide"
-          className="absolute right-2 top-1/2 z-20 -translate-y-1/2 rounded-full border border-white/30 bg-black/30 p-1.5 text-white backdrop-blur transition hover:bg-black/50 sm:right-6 sm:p-3"
-        >
-          <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
-        </button>
-
-        {/* Dots */}
-        <div className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 gap-2">
-          {heroImages.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setSlide(i)}
-              aria-label={`Go to slide ${i + 1}`}
-              className={`h-1.5 rounded-full transition-all ${slide === i ? "w-8 bg-white" : "w-4 bg-white/50 hover:bg-white/80"}`}
-            />
-          ))}
         </div>
       </section>
 
@@ -373,26 +343,6 @@ function Index() {
               <p className="mt-1 text-xs text-muted-foreground sm:text-sm">{s.l}</p>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* VIDEO SECTION */}
-      <section className="bg-secondary/30 py-16 sm:py-24">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="mx-auto max-w-5xl">
-            <div className="relative overflow-hidden rounded-2xl border border-border bg-card shadow-2xl" style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
-              <iframe 
-                src="https://player.vimeo.com/video/1216344740?badge=0&autopause=0&player_id=0&app_id=58479&title=0&byline=0&portrait=0" 
-                frameBorder="0" 
-                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
-                referrerPolicy="strict-origin-when-cross-origin" 
-                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} 
-                title="Mountain Breeze Farm - Villa Tour"
-                loading="lazy"
-              />
-            </div>
-            <p className="mt-4 text-center text-sm text-muted-foreground">Take a virtual tour of Mountain Breeze Farm</p>
-          </div>
         </div>
       </section>
 
