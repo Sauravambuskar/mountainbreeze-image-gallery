@@ -181,7 +181,9 @@ function VillaSlider() {
 function Index() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [showSubtitle, setShowSubtitle] = useState(true);
+  const [showText, setShowText] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
+  const [player, setPlayer] = useState<any>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -190,11 +192,39 @@ function Index() {
   }, []);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowSubtitle(false);
-    }, 4000);
-    return () => clearTimeout(timer);
+    // Initialize Vimeo Player
+    if (typeof window !== 'undefined' && (window as any).Vimeo) {
+      const iframe = document.querySelector('#hero-video') as HTMLIFrameElement;
+      if (iframe) {
+        const vimeoPlayer = new (window as any).Vimeo.Player(iframe);
+        setPlayer(vimeoPlayer);
+
+        // Listen to timeupdate to hide text 7 seconds before end
+        vimeoPlayer.on('timeupdate', (data: any) => {
+          vimeoPlayer.getDuration().then((duration: number) => {
+            const timeLeft = duration - data.seconds;
+            if (timeLeft <= 7) {
+              setShowText(false);
+            } else if (data.seconds < 1) {
+              // Video just started/restarted
+              setShowText(true);
+            }
+          });
+        });
+      }
+    }
   }, []);
+
+  const toggleMute = () => {
+    if (player) {
+      if (isMuted) {
+        player.setVolume(1);
+      } else {
+        player.setVolume(0);
+      }
+      setIsMuted(!isMuted);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -288,7 +318,8 @@ function Index() {
         <div className="absolute inset-0">
           <div className="absolute inset-0 w-full h-full">
             <iframe 
-              src="https://player.vimeo.com/video/1216344740?background=1&autoplay=1&loop=1&byline=0&title=0&portrait=0&muted=1" 
+              id="hero-video"
+              src="https://player.vimeo.com/video/1216344740?background=1&autoplay=1&loop=1&byline=0&title=0&portrait=0&muted=0" 
               className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2"
               style={{ 
                 width: '100vw', 
@@ -305,17 +336,35 @@ function Index() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/70" />
         </div>
 
+        {/* Mute/Unmute Button */}
+        <button
+          onClick={toggleMute}
+          aria-label={isMuted ? "Unmute video" : "Mute video"}
+          className="absolute bottom-6 right-6 z-20 flex h-12 w-12 items-center justify-center rounded-full border border-white/30 bg-black/30 text-white backdrop-blur transition hover:bg-black/50"
+        >
+          {isMuted ? (
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <line x1="23" y1="9" x2="17" y2="15"></line>
+              <line x1="17" y1="9" x2="23" y2="15"></line>
+            </svg>
+          ) : (
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            </svg>
+          )}
+        </button>
+
         {/* Content */}
-        <div className="relative z-10 mx-auto max-w-4xl px-4 text-center text-white sm:px-6">
+        <div className={`relative z-10 mx-auto max-w-4xl px-4 text-center text-white transition-opacity duration-1000 sm:px-6 ${showText ? 'opacity-100' : 'opacity-0'}`}>
           <h1 className="font-display text-3xl font-bold leading-[1.15] drop-shadow-2xl sm:text-5xl md:text-7xl">
             3BHK Farmhouse Near Mumbai &amp; Thane
           </h1>
           <p className="mx-auto mt-4 text-xl font-semibold drop-shadow-lg sm:mt-6 sm:text-3xl md:text-4xl">
             Mountain Breeze Farm
           </p>
-          <p 
-            className={`mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white drop-shadow-lg transition-opacity duration-1000 sm:mt-6 sm:text-lg md:text-xl ${showSubtitle ? 'opacity-100' : 'opacity-0'}`}
-          >
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white drop-shadow-lg sm:mt-6 sm:text-lg md:text-xl">
             Private 3BHK farmhouse with swimming pool, mountain views, bonfire and BBQ near Mumbai and Thane.
           </p>
           <div className="mt-8 flex flex-row items-center justify-center gap-3 sm:mt-10 md:gap-4">
