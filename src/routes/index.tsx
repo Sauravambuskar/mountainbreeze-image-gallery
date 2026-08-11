@@ -232,24 +232,14 @@ function Index() {
       <header className={`fixed top-0 left-0 right-0 z-30 transition-all duration-300 ${scrolled ? "bg-background/95 backdrop-blur-lg border-b border-border shadow-lg" : ""}`}>
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 sm:py-5">
           <a href="#" aria-label="Mountain Breeze Farm home" className="flex items-center gap-2">
-            {scrolled ? (
-              <img 
-                src={logo} 
-                alt="Mountain Breeze Farm" 
-                width={180} 
-                height={44} 
-                className="h-8 w-auto drop-shadow-md sm:h-11 transition-all duration-300"
-              />
-            ) : (
-              <div className="flex flex-col leading-tight">
-                <span className="font-display font-bold text-white text-base sm:text-lg drop-shadow-md tracking-tight">
-                  Mountain Breeze
-                </span>
-                <span className="font-display font-semibold text-white/90 text-[10px] sm:text-xs tracking-wider drop-shadow-md">
-                  FARM
-                </span>
-              </div>
-            )}
+            <img 
+              src={logo} 
+              alt="Mountain Breeze Farm" 
+              width={180} 
+              height={44} 
+              className={`h-10 w-auto drop-shadow-md sm:h-12 transition-all duration-300 ${scrolled ? "" : "drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]"}`}
+              style={scrolled ? {} : { filter: 'drop-shadow(0 0 8px rgba(255,255,255,0.9))' }}
+            />
           </a>
           <ul className={`hidden items-center gap-6 text-sm font-medium lg:flex transition-colors ${scrolled ? "text-foreground/90" : "text-white/90"}`}>
             <li><a href="#about" className={`transition ${scrolled ? "hover:text-primary" : "hover:text-white"}`}>About</a></li>
@@ -278,14 +268,12 @@ function Index() {
           <div className="absolute inset-0 bg-black/95 backdrop-blur-md" />
           <div className="relative flex h-full flex-col">
             <div className="flex items-center justify-between px-4 py-4">
-              <div className="flex flex-col leading-tight">
-                <span className="font-display font-bold text-white text-base drop-shadow-md tracking-tight">
-                  Mountain Breeze
-                </span>
-                <span className="font-display font-semibold text-white/90 text-[10px] tracking-wider drop-shadow-md">
-                  FARM
-                </span>
-              </div>
+              <img 
+                src={logo} 
+                alt="Mountain Breeze Farm" 
+                className="h-10 w-auto"
+                style={{ filter: 'drop-shadow(0 0 8px rgba(255,255,255,0.9))' }}
+              />
               <button
                 onClick={() => setMobileMenuOpen(false)}
                 aria-label="Close menu"
