@@ -181,11 +181,19 @@ function VillaSlider() {
 function Index() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showSubtitle, setShowSubtitle] = useState(true);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowSubtitle(false);
+    }, 4000);
+    return () => clearTimeout(timer);
   }, []);
 
   return (
@@ -305,7 +313,9 @@ function Index() {
           <p className="mx-auto mt-4 text-xl font-semibold drop-shadow-lg sm:mt-6 sm:text-3xl md:text-4xl">
             Mountain Breeze Farm
           </p>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white drop-shadow-lg sm:mt-6 sm:text-lg md:text-xl">
+          <p 
+            className={`mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white drop-shadow-lg transition-opacity duration-1000 sm:mt-6 sm:text-lg md:text-xl ${showSubtitle ? 'opacity-100' : 'opacity-0'}`}
+          >
             Private 3BHK farmhouse with swimming pool, mountain views, bonfire and BBQ near Mumbai and Thane.
           </p>
           <div className="mt-8 flex flex-row items-center justify-center gap-3 sm:mt-10 md:gap-4">
