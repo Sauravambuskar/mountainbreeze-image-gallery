@@ -299,13 +299,16 @@ function Index() {
 
         {/* Content */}
         <div className="relative z-10 mx-auto max-w-4xl px-4 text-center text-white sm:px-6">
-          <h1 className="font-display text-2xl font-semibold leading-[1.1] sm:text-4xl md:text-6xl">
-            3BHK Farmhouse Near Mumbai &amp; Thane<br className="hidden sm:block" /> | Mountain Breeze Farm
+          <h1 className="font-display text-3xl font-bold leading-[1.15] drop-shadow-2xl sm:text-5xl md:text-7xl">
+            3BHK Farmhouse Near Mumbai &amp; Thane
           </h1>
-          <p className="mx-auto mt-3 max-w-xl text-sm text-white/80 sm:mt-4 sm:text-base">
+          <p className="mx-auto mt-4 text-xl font-semibold drop-shadow-lg sm:mt-6 sm:text-3xl md:text-4xl">
+            Mountain Breeze Farm
+          </p>
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white drop-shadow-lg sm:mt-6 sm:text-lg md:text-xl">
             Private 3BHK farmhouse with swimming pool, mountain views, bonfire and BBQ near Mumbai and Thane.
           </p>
-          <div className="mt-6 flex flex-row items-center justify-center gap-3 sm:mt-8">
+          <div className="mt-8 flex flex-row items-center justify-center gap-3 sm:mt-10 md:gap-4">
             <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/40 transition hover:brightness-110">
               <WhatsAppIcon className="h-4 w-4" /> Book Now
             </a>
